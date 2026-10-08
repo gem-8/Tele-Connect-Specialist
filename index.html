@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KURAYA</title>
+        <title>Tele-Connect Specialist Portal</title>
+        <link href="https:fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="app-container">
+            <div id="dashboard-view">
+            <header class="app-header">
+                <h1>Welcome, Dr. Ende💕</h1>
+            </header>
+            <! Ecosystem Role Selection>
+            <div class="specialist-tabs-wrapper">
+                <div class="specialist-tabs" id="specialist-tabs">
+                    <button class="specialist-tab active" data-role="physician"></button>
+                    <button class="specialist-tab" data-role="radiologist"></button>
+                    <button class="specialist-tab" data-role="oncologist"></button>
+                    <button class="specialist-tab" data-role="cardiologist"></button>
+                    <button class="specialist-tab" data-role="pharmacist"></button>
+                    <button class="specialist-tab" data-role="neurologist"></button>
+                    <button class="specialist-tab" data-role="dermatologist"></button>
+                    <button class="specialist-tab" data-role="psychiatrist"></button>
+                    <button class="specialist-tab" data-role="pediatrician"></button>
+                    <button class="specialist-tab" data-role="orthopedic"></button>
+                    <button class="specialist-tab" data-role="gynecologist"></button>
+                    <button class="specialist-tab" data-role="examiner"></button>
+                    <button class="specialist-tab" data-role="patient"></button>
+                </div>
+            </div>
+            <section class="metrics-container">
+                <div class="metric-card" id="card-pending">
+                <div class="metric-icon">
+                    <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                </div>
+                <span class="metric-label">Pending Referrals</span>
+                <span class="metric-value">4</span>
+            </div>
+            <div class="metric-card" id="card-consultations">
+                <div class="metric-icon">
+                    <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/><path d="M12 7v10"/><path d="M7 12h10"/></svg>
+                </div>
+                <span class="metric-label">Consultations</span>
+                <span class="metric value" style="font-size: 1.6rem !important; font-weight: 700 !important; font-family: sans-serif !important; color: #000000 !important; display: block !important;">12</span>
+            </div>
+            <div class="metric-card" id="card-alerts">
+                <div class="metric-icon urgent">
+                    <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                </div>
+                <span class="metric-label">Emergency Alerts</span>
+                <span class="metric-value">0</span>
+            </div>
+            </section>
+            <main class="app-content">
+                <div class="action-control-row">
+                    <button id="btn-new-referral" class="btn-primary-action">+New Specialist Referral</button> 
+                </div>
+                <section class="activity-section">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="patient meta">
+                                <span class="status-dot"></span>
+                                <span class="patient-name">Miss Evelyn Agashua</span>
+                        </div>
+                        <button class="btn-record">View Records</button>
+                    </div>
+                    <div class="activity-item">
+                         <div class="patient-meta">
+                            <span class="status-dot"></span>
+                            <span class="patient-name">Mr. Terdoo Philip</span>
+                            </div>
+                         <button class="btn-record">View Records</button>
+                    </div>
+                    <div class="activity-item">
+                        <div class="patient-meta">
+                            <span class="status-dot"></span>
+                            <span class="patient-name">Prof. Timothy Shir</span>
+                        </div>
+                        <button class="btn-record">View Records</button>
+                    </div>
+                    </div>
+                </section>
+            </main>
+            </div> <div id="form-view" style="display: none;">
+                <section class="form-screen">
+                    <h2 style="font-size:1.25rem; font-weight:700; margin-bottom: 16px;">Referral Form Fields</h2>
+                    <form class="referral-form">
+                        <div class="input-group">
+                            <label for="patient-id">Patient ID:</label>
+                            <input type="text" id="patient-id" placeholder="Enter 8-digit ID">
+                        </div>
+                        <div class="input-group dropdown-group">
+                            <label for="urgency">Urgency:</label>
+                            <select id="urgency">
+                                <option value="" disabled selected>(Dropdown Select)</option>
+                                <option value="routine">Routine</option>
+                                <option value="urgent">Urgent</option>
+                                <option value="emergency">Emergency</option>
+                            </select>
+                            <span class="dropdown arrow">&#9660;</span>
+                        </div>
+                        <div class="upload-section">
+                            <h3>Upload Scans/X-rays</h3>
+                        </div>
+                        <div class="drop-zone" id="drag-drop-zone">
+                            <span class="material-icons" style="color:#008080"; font-size: 2rem; margin-bottom: 8px; display: block; cursor: pointer-events: none;">share</span>
+                            <p id="drop-zone-text" style="pointer-events: none;">Drag & Drop Files</p>                        </div>
+                            <div class="form-actions-row">
+                                <button type="button" id="btn-cancel-form" class="btn-secondary">Cancel</button>
+                                <button type="submit" id="btn-submit-form" class="btn-primary">Submit Referral</button>
+                            </div>
+                        </form>
+                </section>
+            </div>
+            <div id="success-view" style="display: none;">
+                <div class="success-screen-wrapper">
+                    <div class="success-icon-badge">&#10003;</div>
+                    <h2>Referral Created!</h2>
+                    <p>The routing specialist referral form has been filed and sent successfully.</p>
+                    <button type="button" id="btn-success-home" class="btn-primary">Back To Home Dashboard</button>
+                </div>
+            </div>
+            </main>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const specialistTabs = document.querySelectorAll('.specialist-tab');
+                const welcomeHeader = document.querySelector('.app-header h1');
+                const dashboardView = document.getElementById('dashboard-view');
+                const formView = document.getElementById('form-view');
+                const successView = document.getElementById('success-view');
+                const btnNewReferral = document.getElementById('btn-new-referral');
+                const btnCancelForm = document.getElementById('btn-cancel-form');
+                const btnSubmitForm = document.getElementById('btn-submit-form');
+                const btnSuccessHome = document.getElementById('btn-success-home');
+                const dropZone = document.getElementById('drag-drop-zone');
+                const dropZoneText = document.getElementById('drop-zone-text');
+
+                specialistTabs.forEach(button => {
+                    button.addEventListener('click', () => {
+                        specialistTabs.forEach(tab => tab.classList.remove('active'));
+                        button.classList.add('active');
+
+                        const selectedRole = button.innerText;
+                        const roleType = button.getAttribute('data-role');
+
+                        if (welcomeHeader) {
+                            if (roleType === 'patient') {
+                                welcomeHeader.innerHTML = 'Welcome to Your Patient Portal!';
+                            } else {
+                                welcomeHeader.innerHTML = `Welcome, Dr. Ende💕 ${selectedRole}`;
+                            }
+                        }
+                    });
+                });
+
+                if (btnNewReferral) {
+                    btnNewReferral.addEventListener('click', () => {
+                        dashboardView.style.display = 'none';
+                        formView.style.display = 'block';
+                        successView.style.display = 'none';
+                        window.scrollTo(0, 0);
+                    });
+                }
+
+                if (btnCancelForm) {
+                    btnCancelForm.addEventListener('click', () => {
+                        formView.style.display = 'none';
+                        dashboardView.style.display = 'block';
+                    });
+                }
+
+                if (btnSubmitForm) {
+                    btnSubmitForm.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        formView.style.display = 'none';
+                        successView.style.display = 'block';
+                        window.scrollTo(0, 0);
+                    });
+                }
+
+                if (btnSuccessHome) {
+                    btnSuccessHome.addEventListener('click', () => {
+                        successView.style.display = 'none';
+                        dashboardView.style.display = 'block';
+                    });
+                }
+
+                function handleFileUpload(file) {
+                    if (dropZoneText && file) {
+                        dropZoneText.innerHTML = '<strong>Selected:</strong> ' + file.name + ' (' + file.size + ' bytes)';
+                        dropZoneText.style.borderColor = '#22c55e';
+                        dropZoneText.style.backgroundColor = '#f0fdf4';
+                    }
+                }
+
+                if (dropZone) {
+                    let fileInput = document.getElementById('hidden-file-input');
+                    if (!fileInput) {
+                        fileInput = document.createElement('input');
+                        fileInput.type = 'file';
+                        fileInput.id = 'hidden-file-input';
+                        fileInput.style.display = 'none';
+                        document.body.appendChild(fileInput);
+                    }
+
+                    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                        dropZone.addEventListener(eventName, (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }, false);
+                    });
+
+                    ['dragenter', 'dragover'].forEach(eventName => {
+                        dropZone.addEventListener(eventName, () => {
+                            dropZone.style.backgroundColor = '#e0f2f1';
+                            dropZone.style.borderColor = '#008080';
+                        });
+                    });
+
+                    ['dragleave', 'drop'].forEach(eventName => {
+                        dropZone.addEventListener(eventName, () => {
+                            dropZone.style.backgroundColor = '#f8fafc';
+                            dropZone.style.borderColor = '#cbd5e1';
+                        }, false);
+                    });
+
+                    dropZone.addEventListener('drop', (e) => {
+                        const files = e.dataTransfer ? e.dataTransfer.files : [];
+                        if (files.length > 0) {
+                            handleFileUpload(files[0]);
+                        }
+                    }, false);
+
+                    dropZone.addEventListener('click', () => {
+                        fileInput.click();
+                    });
+
+                    fileInput.addEventListener('change', (e) => {
+                        if (e.target.files && e.target.files.length > 0) {
+                            handleFileUpload(e.target.files[0]);
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
