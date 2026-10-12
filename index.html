@@ -15,122 +15,177 @@
                 <h1>Welcome, Dr. Ende💕</h1>
             </header>
             <! Ecosystem Role Selection>
-            <div class="specialist-tabs-wrapper">
-                <div class="specialist-tabs" id="specialist-tabs">
-                    <button class="specialist-tab active" data-role="physician"></button>
-                    <button class="specialist-tab" data-role="radiologist"></button>
-                    <button class="specialist-tab" data-role="oncologist"></button>
-                    <button class="specialist-tab" data-role="cardiologist"></button>
-                    <button class="specialist-tab" data-role="pharmacist"></button>
-                    <button class="specialist-tab" data-role="neurologist"></button>
-                    <button class="specialist-tab" data-role="dermatologist"></button>
-                    <button class="specialist-tab" data-role="psychiatrist"></button>
-                    <button class="specialist-tab" data-role="pediatrician"></button>
-                    <button class="specialist-tab" data-role="orthopedic"></button>
-                    <button class="specialist-tab" data-role="gynecologist"></button>
-                    <button class="specialist-tab" data-role="examiner"></button>
-                    <button class="specialist-tab" data-role="patient"></button>
+            <div class="session bar">
+                <div class="session-info">
+                    <span class="material-icons">account_circle</span>
+                    <span id="current-user-display">Logged in as: <strong>Dr. Ende</strong></span>
+                </div>
+                <div class="role-switvher-dropdown">
+                    <label for="role-select">Switch Mode: </label>
+                    <select id="role-select" onchange="switchAppRole(this.value)">
+                        <optgroup label="specialists (Provider View)">
+                            <option value="physician" selected>Physician</option>
+                            <option value="radiologist">Radiologist</option>
+                            <option value="oncologist">Oncologist</option>
+                            <option value="neurosurgeon">Neurosurgeon</option>
+                            <option value="pediatrician">Pediatrician</option>
+                            <option value="psychologist">Psychologist</option>
+                            <option value="pharmacist">Pharmacist</option>
+                            <option value="examiner">Examiner</option>
+                            </optgroup>
+                            <optgroup label="Patients Portal">
+                                <option value="patient">Patient Portal</option>
+                            </optgroup>  
+                            <optgroup label="System Control">
+                                <option value="admin">Chief Administrator Console</option>
+                            </optgroup>
+                    </select>
                 </div>
             </div>
-            <section class="metrics-container">
-                <div class="metric-card" id="card-pending">
-                <div class="metric-icon">
-                    <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                </div>
-                <span class="metric-label">Pending Referrals</span>
-                <span class="metric-value">4</span>
-            </div>
-            <div class="metric-card" id="card-consultations">
-                <div class="metric-icon">
-                    <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/><path d="M12 7v10"/><path d="M7 12h10"/></svg>
-                </div>
-                <span class="metric-label">Consultations</span>
-                <span class="metric value" style="font-size: 1.6rem !important; font-weight: 700 !important; font-family: sans-serif !important; color: #000000 !important; display: block !important;">12</span>
-            </div>
-            <div class="metric-card" id="card-alerts">
-                <div class="metric-icon urgent">
-                    <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                </div>
-                <span class="metric-label">Emergency Alerts</span>
-                <span class="metric-value">0</span>
-            </div>
-            </section>
-            <main class="app-content">
-                <div class="action-control-row">
-                    <button id="btn-new-referral" class="btn-primary-action">+New Specialist Referral</button> 
-                </div>
-                <section class="activity-section">
-                    <h2>Recent Activity</h2>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <div class="patient meta">
-                                <span class="status-dot"></span>
-                                <span class="patient-name">Miss Evelyn Agashua</span>
-                        </div>
-                        <button class="btn-record">View Records</button>
+            <div id="dashboard-view">
+                <div id="interface-specialist" class="role-interface active-interface">
+                    <div class="app-header">
+                        <h1 id="specialist-welcome">Welcome, Physician Ende</h1>
+                        <p>Specialist Clinical Management & Triage Portal</p>
                     </div>
-                    <div class="activity-item">
-                         <div class="patient-meta">
-                            <span class="status-dot"></span>
-                            <span class="patient-name">Mr. Terdoo Philip</span>
-                            </div>
-                         <button class="btn-record">View Records</button>
+                    <div class="stats-grid">
+                        <div class="metric-card">
+                            <h3>Pending Triage</h3>
+                            <span class="metric-num">12</span>
+                        </div>
+                        <div class="metric-card"></div>
+                        <h3>Scans Ready</h3>
+                        <span class="metric-num">5</span>
                     </div>
-                    <div class="activity-item">
-                        <div class="patient-meta">
-                            <span class="status-dot"></span>
-                            <span class="patient-name">Prof. Timothy Shir</span>
-                        </div>
-                        <button class="btn-record">View Records</button>
+                    <div class="metric-card">
+                        <h3>Today's Consults</h3>
+                        <span class="metric-num">8</span>
                     </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn-primary" id="btn-new-referral"> + New Specialist Referral</button>
+                </div>
+                <div class="card-panel" style="margin-top: 20px;">
+                    <h3><span class="material-icons" style="vertical-align: middle;"></span>Diagnostic Scan Heatmap</h3>
+                    <div class="scan-container" style="position: relative; background: #000; height: 200px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff;">
+                        <p>[Chest X-ray/DICOM Scan Preview]</p>
+                        <div id="heatmap-overlay" style="position: absolute; width: 80px; height: 80px; border: 2px dashed #ff4d4d; background: rgba(255, 77, 77, 0.3); border-radius: 50%; display: none;"></div>
                     </div>
-                </section>
-            </main>
-            </div> <div id="form-view" style="display: none;">
-                <section class="form-screen">
-                    <h2 style="font-size:1.25rem; font-weight:700; margin-bottom: 16px;">Referral Form Fields</h2>
-                    <form class="referral-form">
-                        <div class="input-group">
-                            <label for="patient-id">Patient ID:</label>
-                            <input type="text" id="patient-id" placeholder="Enter 8-digit ID">
-                        </div>
-                        <div class="input-group dropdown-group">
-                            <label for="urgency">Urgency:</label>
-                            <select id="urgency">
-                                <option value="" disabled selected>(Dropdown Select)</option>
-                                <option value="routine">Routine</option>
-                                <option value="urgent">Urgent</option>
-                                <option value="emergency">Emergency</option>
-                            </select>
-                            <span class="dropdown arrow">&#9660;</span>
-                        </div>
-                        <div class="upload-section">
-                            <h3>Upload Scans/X-rays</h3>
-                        </div>
-                        <div class="drop-zone" id="drag-drop-zone">
-                            <span class="material-icons" style="color:#008080"; font-size: 2rem; margin-bottom: 8px; display: block; cursor: pointer-events: none;">share</span>
-                            <p id="drop-zone-text" style="pointer-events: none;">Drag & Drop Files</p>                        </div>
-                            <div class="form-actions-row">
-                                <button type="button" id="btn-cancel-form" class="btn-secondary">Cancel</button>
-                                <button type="submit" id="btn-submit-form" class="btn-primary">Submit Referral</button>
-                            </div>
-                        </form>
-                </section>
-            </div>
-            <div id="success-view" style="display: none;">
-                <div class="success-screen-wrapper">
-                    <div class="success-icon-badge">&#10003;</div>
-                    <h2>Referral Created!</h2>
-                    <p>The routing specialist referral form has been filed and sent successfully.</p>
-                    <button type="button" id="btn-success-home" class="btn-primary">Back To Home Dashboard</button>
+                    <button class="btn-secondary" style="margin-top: 10px;" onclick="toggleHeatmap()">Toggle AI Detection Heatmap</button>
+                </div>
+                <div id="interface-patient" class="role-interface" style="display: none;">
+                    <div class="app-header" style="background: linear-gradient(135deg, #008080, #004d4d); color: white; padding: 20px; border-radius: 12px;"></div>
+                    <h1>Welcome to Your Kuraya Health Portal</h1>
+                    <p>Manage your appointments, view e-prescriptions and connect with specialists</p>
+                </div>
+                <div class="stats-grid" style="margin-top: 20px;">
+                    <div class="metric-card">
+                        <h3>Upcoming Consults</h3>
+                        <span class="metric-num">1</span>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Active Prescriptions</h3>
+                        <span class="metric-card"></span>
+                            <h3>Medical Records</h3>
+                            <span class="metric-num">14</span>
+                    </div>
+                </div>
+                <div class="action-bar" style="margin-top: 15px;">
+                    <button class="btn-primary" style="background-color: #008080;" onclick="alert('Opening Self-Consultation Booking Form...')"> + Book Self-Consultation</button>
+                </div>
+                <div id="interface-admin" class="role-interface" style="display: none;">
+                    <div class="app header" style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px;"></div> 
+                    <h1>Chief Administrator Console</h1>
+                    <p>System Maintenance, Role Access Oversight & Master Diagnostics</p>
+                </div>
+                <div class="stats-grid" style="margin-top: 20px;">
+                    <div class="metric-card" style="border-left: 4px solid #3b82f6;">
+                        <h3>Total Platform Users</h3>
+                        <span class="metric-num">1,240</span>
+                    </div>
+                    <div class="metric-card" style="border-left: 4px solid #10b981;"></div>
+                    <h3>Active EMR Syncs</h3>
+                    <span class="metric-num">99.8%</span>
+                </div>
+                <div class="metric-card" style="border-left: 4px solid #f59e0b;">
+                    <h3>System Server Load</h3>
+                    <span class="metric-num">14%</span>
+                </div>
+                <div class="card-panel" style="margin-top: 20px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px;">
+                    <h3>Developer & Admin Quick Actions</h3>
+                    <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                        <button class="tab-btn" onclick="alert('Running Database & EMR Sync Diagnostic...')">Run EMR Sync Audit</button>
+                        <button class="tab-btn" onclick="alert('Flushing temporary cloud cache...')">Clear Cache</button>
+                        <button class="tab-btn" onclick="alert('Exporting system logs...')">Download System Logs</button>
+                    </div>
+                </div>
+                <div class="card-panel" style="margin-top: 20px;">
+                    <h3><span class="material-icons" style="vertical-align: middle;"></span>Recent Patient Activity & Queue</h3>
+                    <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #e2e8f0; color: #64748b;">
+                                <th style="padding: 8px;">Patient ID</th>
+                                <th style="padding: 8px;">Name</th>
+                                <th style="padding: 8px;">Urgency</th>
+                                <th style="padding: 8px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                <td style="padding: 10px;">#KUR-8201</td>
+                                <td style="padding: 10px;">Evelyn Agashua</td>
+                                <td style="padding: 10px;">Chest X-ray/Ocular Scan</td>
+                                <td style="padding: 10px;">
+                                    <button class="btn-secondary" onclick="viewPatientEMR('#KUR-8201','Evelyn Agashua', 'Chest X-Ray Anomaly')">View Records</button>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #f1f5f9;">
+                                <td style="padding: 10px;">#KUR-8202</td>
+                                <td style="padding: 10px;">Terdoo Shir</td>
+                                <td style="padding: 10px;">Oncology Screening</td>
+                                <td style="padding: 10px;">
+                                    <button class="btn-secondary" onclick="viewPatientEMR('#KUR-8202', 'Terdoo Shir', 'Stage 1 Onset Review')">View Records</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+               <div class="card-panel" style="margin-top: 20px;">
+                <h3><span class="material-icons" style="vertical-align: middle;"></span>Upload Scans & X-Rays</h3>
+                <div class="drop-zone" id="drag-drop-zone" style="border: 2px dashed #008080; background: #fafafa; padding: 30px; text-align: center; border-radius: 8px; cursor: pointer; margin-top: 10px;">
+                    <span class="material-icons" style="color: #008080; font-size: 2.5rem; pointer-events: none;">share</span>
+                    <p id="drop-zone-text" style="margin-top: 8px; color: #475569; pointer-events: none;">Drag & Drop DICOM/PDF files here or click to browse</p>
+                </div>
+                <input type="file" id="hidden-file-input" accept="image/*,application/pdf,.dicom" style="display: none;">
+               </div>
+            </div> 
+            <div id="interface-patient" class="role-interface">
+                <div class="app header" style="background: linear-gradient(135deg, #008080,#004d4d); color: white; padding: 20px; border-radius: 12px;">
+                    <h1>Welcome to Your Kuraya Patient Portal</h1>
+                    <p>Manage your appointments, view e-prescriptions and connect with specialists.</p>
+                </div>
+                <div class="card-panel" style="margin-top: 20px;">
+                    <h3>Your Active Prescriptions & Directives</h3>
+                    <p style="color: #64748b; margin-top: 5px;">No active flags. Next scheduled check in: <strong>Oct 18, 2026</strong>.</p>
                 </div>
             </div>
-            </main>
+            <div id="interface-admin" class="role-interface">
+                <div class="app-header" style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px;">
+                    <h1>Chief Administrator Console</h1>
+                    <p>System Maintenance & EMR Database Audit</p>
+                </div>
+            </div>
+            <div id="emr-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center;">
+                <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+                    <h2 id="modal-title" style="color: #008080; margin-bottom: 10px;">Patient EMR Record</h2>
+                    <div id="modal-content" style="margin-bottom: 20px; color: #334155; line-height: 1.6;">
+                        <!--Populated Dynamically-->
+                    </div>
+                    <button class="btn-primary" onclick="closeEMRModal()">CloseRecord</button>
+                </div>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                const specialistTabs = document.querySelectorAll('.specialist-tab');
-                const welcomeHeader = document.querySelector('.app-header h1');
-                const dashboardView = document.getElementById('dashboard-view');
+                const roleSelect = document.getElementById('role-select');
                 const formView = document.getElementById('form-view');
                 const successView = document.getElementById('success-view');
                 const btnNewReferral = document.getElementById('btn-new-referral');
@@ -139,25 +194,48 @@
                 const btnSuccessHome = document.getElementById('btn-success-home');
                 const dropZone = document.getElementById('drag-drop-zone');
                 const dropZoneText = document.getElementById('drop-zone-text');
+                const specialistUI = document.getElementById('interface-specialist');
+                const patientUI = document.getElementById('interface-patient');
+                const adminUI = document.getElementById('interface-admin');
+                const userDisplay = document.getElementById('current-user-display');
+                const specialistWelcome = document.getElementById('specialist-welcome');
 
-                specialistTabs.forEach(button => {
-                    button.addEventListener('click', () => {
-                        specialistTabs.forEach(tab => tab.classList.remove('active'));
-                        button.classList.add('active');
-
-                        const selectedRole = button.innerText;
-                        const roleType = button.getAttribute('data-role');
-
-                        if (welcomeHeader) {
-                            if (roleType === 'patient') {
-                                welcomeHeader.innerHTML = 'Welcome to Your Patient Portal!';
-                            } else {
-                                welcomeHeader.innerHTML = `Welcome, Dr. Ende💕 ${selectedRole}`;
-                            }
-                        }
-                    });
-                });
-
+specialistUI.style.display = 'none';
+patientUI.style.display = 'none';
+adminUI.style.display = 'none';
+if (roleSelect) {
+    roleSelect.addEventListener('change', (e) => {
+        const val = e.target.value;
+    })
+}
+specialistUI.classList.remove('active-interface');
+patientUI.classList.remove('active-interface');
+adminUI.classList.remove('active-interface');
+            if (roleSelect === 'patient') {
+                patientUI.classList.add('active-interface');
+                userDisplay.innerHTML = 'Logged in as: <strong>Patient User (Jane Doe)</strong>';
+            }
+            else if (roleSelect === 'admin') {
+                adminUI.classList.add('active-interface');
+                userDisplay.innerHTML = 'Logged in as: <strong>Chief Administrator(Super User)</strong>';
+            } else {
+                specialistUI.classList.add('active-interface');
+                const formattedRole = roleSelect.charAt(0).toUpperCase() + roleSelect.slice(1);
+                userDisplay.innerHTML = 'Logged in as: <strong>Dr. Ende (${formattedRole})</strong>';
+                if (specialistWelcome) {
+                    specialistWelcome.innerText = 'Welcome, ${formattedRole} Ende';
+                }
+            }
+            function toggleHeatmap () {
+                const heatmap = document.getElementById('heatmap-overlay');
+                if (heatmap) {
+                    if (heatmap.style.display === 'none' || heatmap.style.display === '') {
+                        heatmap.style.display = 'block';
+                    } else {
+                        heatmap.style.display = 'none';
+                    }
+                }
+            }
                 if (btnNewReferral) {
                     btnNewReferral.addEventListener('click', () => {
                         dashboardView.style.display = 'none';
@@ -247,6 +325,32 @@
                     });
                 }
             });
+            function viewPatientEMR(patientId, patientName, condition) {
+            const modal = document.getElementById('emr-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            if (modal && title && content) {
+                title.innerText = 'EMR Record: ${patientName} (${patientId})';
+                content.innerHTML = `
+                    <p><strong>Patient Name:</strong> ${patientName}</p>
+                    <p><strong>Patient ID:</strong> ${patientId}</p>
+                    <p><strong>Primary Diagnosis:</strong> ${condition}</p>
+                    <p><strong>Blood Group/Genotype:</strong> 0+ / AA</p>
+                    <strong>Last Hospital Visit:</strong> October 10, 2026
+                    <strong>Diagnostic Flag:</strong>Moderate anomaly detected in upper left quadrant. Review scan attached below.</p>
+                    <div style="background: #f8fafc; padding: 10px; border-radius: 6px; margin-top: 10px; border: 1px solid #e2e8f0;">
+                        <span class="material-icons" style="vertical-align: middle; color: #008080;">description</span>
+                        <a href="#" style="color:#008080; font-weight: 600; text-decoration: none;">Download_DICOM_Scan_${patientId}.dcm</a>
+                    </div>`;
+                     modal.style.display = 'flex';
+                }
+            }
+             function closeEMRModal() {
+                const modal = document.getElementById('emr-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            }
         </script>
     </body>
 </html>

@@ -439,3 +439,51 @@ body{
     border-color: #008080;
     box-shadow: 0 2px 8px rgba(0, 128, 128, 0.25);
 }
+.session-bar{
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    border-bottom: 2px solid #008080;
+}
+.session-info{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.role-switcheer-dropdown select{
+    background-color: #1e293b;
+    color: #38bdf8;
+    border: 1px solid #334155;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.card-panel{
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+.btn-secondary{
+    background-color: #e2e8f0;
+    color: #1e293b;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-secondary:hover{
+    background-color: #cbd5e1;
+}
+.role-interface{
+    display: none !important;
+}
+.role-interface.active-interface{
+    display: block !;
+}
