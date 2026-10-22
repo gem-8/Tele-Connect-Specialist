@@ -485,5 +485,45 @@ body{
     display: none !important;
 }
 .role-interface.active-interface{
-    display: block !;
+    display: block !important;
+}
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+.auth-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.auth-logo h2 {
+    color: #008080;
+    margin-bottom: 5px;
+}
+.auth-logo p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 5px;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem ;
 }
