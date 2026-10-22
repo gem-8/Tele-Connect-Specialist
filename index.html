@@ -1,191 +1,73 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KURAYA</title>
-        <title>Tele-Connect Specialist Portal</title>
-        <link href="https:fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700display=swap" rel="stylesheet">
+        <title>KURAYA - Tele-Connect Specialist Portal</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="auth-screen" class="auth-container">
-            <div class="auth-card">
-                <div class="auth-logo">
-                    <h2>Kuraya Health Ecosystem</h2>
-                    <p>Secure Telemedicine & EMR Portal</p>
+        <!-- AUTHENTICATION SCREEN -->
+        <div id="auth-screen" class="auth-container" style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #f1f5f9;">
+            <div class="auth-card" style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 100%; max-width: 400px;">
+                <div class="auth-logo" style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: #008080;">Kuraya Health Ecosystem</h2>
+                    <p style="color: #64748b; font-size: 0.9rem;">Secure Telemedicine & EMR Portal</p>
                 </div>
                 <form id="login-form" onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label>Email or User ID</label>
-                        <input type="text" id="login-uder" placeholder="e.g.patient@kuraya.ng" required>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">Email or User ID</label>
+                        <input type="text" id="login-user" placeholder="e.g. patient@kuraya.ng" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
                     </div>
-                    <div class="form-group">
-                        <label>Select User Portal</label>
-                        <select id="login-role-select" required>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">Select User Portal</label>
+                        <select id="login-role-select" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
                             <option value="" disabled selected>-- Choose your portal --</option>
                             <option value="patient">Patient</option>
                             <option value="specialist">Medical Specialist</option>
                             <option value="admin">Chief Administrator</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Secure Login</button>
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 10px; background: #008080; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Secure Login</button>
                 </form>
             </div>
         </div>
-        <div class="main-app-container" style="display: none;">
-            <div id="dashboard-view">
-            <header class="app-header">
-                <h1>Welcome, Dr. Ende💕</h1>
-            </header>
-            <! Ecosystem Role Selection>
-            <div class="session bar">
-                <div class="session-info">
-                    <span class="material-icons">account_circle</span>
-                    <span id="authenticated-user-display">Logged in</span>
+
+        <!-- MAIN APP CONTAINER -->
+        <div id="main-app-container" style="display: none; padding: 20px; max-width: 1200px; margin: 0 auto; font-family: 'Inter', sans-serif;">
+            <div class="session-bar" style="display: flex; justify-content: space-between; align-items: center; background: #e2e8f0; padding: 10px 20px; border-radius: 8px; margin-bottom: 20px;">
+                <span id="authenticated-user-display">Logged in</span>
+                <button class="btn-secondary" onclick="handleLogout()" style="padding: 6px 12px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer;">Log Out</button>
+            </div>
+
+            <!-- PATIENT PORTAL -->
+            <div id="portal-patient" class="role-portal" style="display: none;">
+                <div class="app-header" style="background: linear-gradient(135deg, #008080, #004d4d); color: white; padding: 20px; border-radius: 12px;">
+                    <h1>Patient Health Portal</h1>
+                    <p>Your active treatments, symptom logs and virtual consultation room.</p>
                 </div>
-                <button class="btn-secondary" onclick="handleLogout()" style="padding: 4px 10px; font-size: 0.75rem;">Log Out</button>
-                </div>
-                <div id="portal-patient" class="role-portal" style="display: none;">
-                    <div class="app-header" style="background: linear-gradient(135deg, #008080, #004d4d); color: white; padding: 20px; border-radius: 12px;">
-                        <h1>Patient Health Portal</h1>
-                        <p>Youractive treatments, symptom logs and virtual consultation room.</p>
-                    </div>
-                    <div class="card-panel" style="margin-top: 20px;">
-                        <h3>Upcoming Appointment</h3>
-                        <p style="color: #64748b; margin-top: 5px;">Dr. Ende - <strong>Today at 2:00pm</strong></p>
-                        <button class="btn-primary" style="margin-top: 1opx;" onclick="alert('Connecting to secure video consultation room...')">Join Video Call</button>
-                    </div>
-                </div>
-                <div class="role-switcher-dropdown">
-                    <label for="role-select">Switch Mode: </label>
-                    <select id="role-select" onchange="switchAppRole(this.value)">
-                        <optgroup label="specialists (Provider View)">
-                            <option value="physician" selected>Physician</option>
-                            <option value="radiologist">Radiologist</option>
-                            <option value="oncologist">Oncologist</option>
-                            <option value="neurosurgeon">Neurosurgeon</option>
-                            <option value="pediatrician">Pediatrician</option>
-                            <option value="psychologist">Psychologist</option>
-                            <option value="pharmacist">Pharmacist</option>
-                            <option value="examiner">Examiner</option>
-                            </optgroup>
-                            <optgroup label="Patients Portal">
-                                <option value="patient">Patient Portal</option>
-                            </optgroup>  
-                            <optgroup label="System Control">
-                                <option value="admin">Chief Administrator Console</option>
-                            </optgroup>
-                    </select>
+                <div class="card-panel" style="margin-top: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3>Upcoming Appointment</h3>
+                    <p style="color: #64748b; margin-top: 5px;">Dr. Ende - <strong>Today at 2:00pm</strong></p>
+                    <button class="btn-primary" style="margin-top: 10px; padding: 8px 16px; background: #008080; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="alert('Connecting to secure video consultation room...')">Join Video Call</button>
                 </div>
             </div>
-            <div id="dashboard-view">
-                <div id="portal-specialist" class="role-portal active-interface" style="display: none;">
-                    <div class="app-header">
-                        <h1 id="specialist-heading">Specialist Clinical Workstation</h1>
-                        <p>Patient symptom evaluation, scan reviews and clinical charting.</p>
-                    </div>
-                    <div class="card-panel" style="margin-top: 20px;">
-                            <h3>Active Patient Queue & Symptom Logs</h3>
-                            <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
-                                <thead>
-                                    <tr style="border-bottom: 2px solid #e2e8f0; color: #64748b;">
-                                        <th style="padding: 8px;">Patient ID</th>
-                                        <th style="padding: 8px;">Logged Symptoms</th>
-                                        <th style="padding: 8px;">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="padding: 10px;">#KUR-8012</td>
-                                        <td style="padding: 10px;">Persistent chest tightness, dry cough (3 days)</td>
-                                        <td style="padding: 10px;">
-                                            <button class="btn-secondary" onclick="openConsultationWorkspace"('#KUR-8012', 'Persistent chest tightness')">Open Workspace</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        </div>
-                        <! -- CHEIF ADMINISTRATOR CONSOLE (Only visible to admin) -- >
-                        <div id="portal-admin" class="role-portal" style="display: none;">
-                            <div class="app-header" style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px;">
-                                <h1>Chief Administrator Console</h1>
-                                <p>Global system oversight, server health and role provisioning</p>
-                            </div>
-                            <div class="card-panel" style="margin-top: 20px;">
-                                <h3>System Diagnostics</h3>
-                                <p>All data nodes and EMR sync pipes are functioning at 100% capacity</p>
-                            </div>
-                        </div>
-                    
 
-                        </div>
-                <div class="action-bar">
-                    <button class="btn-primary" id="btn-new-referral"> + New Specialist Referral</button>
+            <!-- SPECIALIST PORTAL -->
+            <div id="portal-specialist" class="role-portal" style="display: none;">
+                <div class="app-header" style="background: #0f766e; color: white; padding: 20px; border-radius: 12px;">
+                    <h1 id="specialist-heading">Specialist Clinical Workstation</h1>
+                    <p>Patient symptom evaluation, scan reviews and clinical charting.</p>
                 </div>
-                <div class="card-panel" style="margin-top: 20px;">
-                    <h3><span class="material-icons" style="vertical-align: middle;"></span>Diagnostic Scan Heatmap</h3>
-                    <div class="scan-container" style="position: relative; background: #000; height: 200px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff;">
-                        <p>[Chest X-ray/DICOM Scan Preview]</p>
-                        <div id="heatmap-overlay" style="position: absolute; width: 80px; height: 80px; border: 2px dashed #ff4d4d; background: rgba(255, 77, 77, 0.3); border-radius: 50%; display: none;"></div>
-                    </div>
-                    <button class="btn-secondary" style="margin-top: 10px;" onclick="toggleHeatmap()">Toggle AI Detection Heatmap</button>
-                </div>
-                <div id="interface-patient" class="role-interface" style="display: none;">
-                    <div class="app-header" style="background: linear-gradient(135deg, #008080, #004d4d); color: white; padding: 20px; border-radius: 12px;"></div>
-                    <h1>Welcome to Your Kuraya Health Portal</h1>
-                    <p>Manage your appointments, view e-prescriptions and connect with specialists</p>
-                </div>
-                <div class="stats-grid" style="margin-top: 20px;">
-                    <div class="metric-card">
-                        <h3>Upcoming Consults</h3>
-                        <span class="metric-num">1</span>
-                    </div>
-                    <div class="metric-card">
-                        <h3>Active Prescriptions</h3>
-                        <span class="metric-card"></span>
-                            <h3>Medical Records</h3>
-                            <span class="metric-num">14</span>
-                    </div>
-                </div>
-                <div class="action-bar" style="margin-top: 15px;">
-                    <button class="btn-primary" style="background-color: #008080;" onclick="alert('Opening Self-Consultation Booking Form...')"> + Book Self-Consultation</button>
-                </div>
-                <div id="interface-admin" class="role-interface" style="display: none;">
-                    <div class="app header" style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px;"></div> 
-                    <h1>Chief Administrator Console</h1>
-                    <p>System Maintenance, Role Access Oversight & Master Diagnostics</p>
-                </div>
-                <div class="stats-grid" style="margin-top: 20px;">
-                    <div class="metric-card" style="border-left: 4px solid #3b82f6;">
-                        <h3>Total Platform Users</h3>
-                        <span class="metric-num">1,240</span>
-                    </div>
-                    <div class="metric-card" style="border-left: 4px solid #10b981;"></div>
-                    <h3>Active EMR Syncs</h3>
-                    <span class="metric-num">99.8%</span>
-                </div>
-                <div class="metric-card" style="border-left: 4px solid #f59e0b;">
-                    <h3>System Server Load</h3>
-                    <span class="metric-num">14%</span>
-                </div>
-                <div class="card-panel" style="margin-top: 20px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px;">
-                    <h3>Developer & Admin Quick Actions</h3>
-                    <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
-                        <button class="tab-btn" onclick="alert('Running Database & EMR Sync Diagnostic...')">Run EMR Sync Audit</button>
-                        <button class="tab-btn" onclick="alert('Flushing temporary cloud cache...')">Clear Cache</button>
-                        <button class="tab-btn" onclick="alert('Exporting system logs...')">Download System Logs</button>
-                    </div>
-                </div>
-                <div class="card-panel" style="margin-top: 20px;">
-                    <h3><span class="material-icons" style="vertical-align: middle;"></span>Recent Patient Activity & Queue</h3>
+                <div class="card-panel" style="margin-top: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3>Active Patient Queue & Symptom Logs</h3>
                     <table style="width: 100%; margin-top: 10px; border-collapse: collapse; text-align: left;">
                         <thead>
                             <tr style="border-bottom: 2px solid #e2e8f0; color: #64748b;">
                                 <th style="padding: 8px;">Patient ID</th>
                                 <th style="padding: 8px;">Name</th>
-                                <th style="padding: 8px;">Urgency</th>
+                                <th style="padding: 8px;">Logged Symptoms / Condition</th>
                                 <th style="padding: 8px;">Action</th>
                             </tr>
                         </thead>
@@ -193,258 +75,132 @@
                             <tr style="border-bottom: 1px solid #f1f5f9;">
                                 <td style="padding: 10px;">#KUR-8201</td>
                                 <td style="padding: 10px;">Evelyn Agashua</td>
-                                <td style="padding: 10px;">Chest X-ray/Ocular Scan</td>
+                                <td style="padding: 10px;">Chest X-ray / Ocular Scan Anomaly</td>
                                 <td style="padding: 10px;">
-                                    <button class="btn-secondary" onclick="viewPatientEMR('#KUR-8201','Evelyn Agashua', 'Chest X-Ray Anomaly')">View Records</button>
+                                    <button class="btn-secondary" style="padding: 6px 12px; background: #0f766e; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="viewPatientEMR('#KUR-8201','Evelyn Agashua', 'Chest X-Ray Anomaly')">View Records</button>
                                 </td>
                             </tr>
                             <tr style="border-bottom: 1px solid #f1f5f9;">
                                 <td style="padding: 10px;">#KUR-8202</td>
                                 <td style="padding: 10px;">Terdoo Shir</td>
-                                <td style="padding: 10px;">Oncology Screening</td>
+                                <td style="padding: 10px;">Oncology Screening Review</td>
                                 <td style="padding: 10px;">
-                                    <button class="btn-secondary" onclick="viewPatientEMR('#KUR-8202', 'Terdoo Shir', 'Stage 1 Onset Review')">View Records</button>
+                                    <button class="btn-secondary" style="padding: 6px 12px; background: #0f766e; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="viewPatientEMR('#KUR-8202', 'Terdoo Shir', 'Stage 1 Onset Review')">View Records</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-               <div class="card-panel" style="margin-top: 20px;">
-                <h3><span class="material-icons" style="vertical-align: middle;"></span>Upload Scans & X-Rays</h3>
-                <div class="drop-zone" id="drag-drop-zone" style="border: 2px dashed #008080; background: #fafafa; padding: 30px; text-align: center; border-radius: 8px; cursor: pointer; margin-top: 10px;">
-                    <span class="material-icons" style="color: #008080; font-size: 2.5rem; pointer-events: none;">share</span>
-                    <p id="drop-zone-text" style="margin-top: 8px; color: #475569; pointer-events: none;">Drag & Drop DICOM/PDF files here or click to browse</p>
-                </div>
-                <input type="file" id="hidden-file-input" accept="image/*,application/pdf,.dicom" style="display: none;">
-               </div>
-            </div> 
-            <div id="interface-patient" class="role-interface">
-                <div class="app header" style="background: linear-gradient(135deg, #008080,#004d4d); color: white; padding: 20px; border-radius: 12px;">
-                    <h1>Welcome to Your Kuraya Patient Portal</h1>
-                    <p>Manage your appointments, view e-prescriptions and connect with specialists.</p>
-                </div>
-                <div class="card-panel" style="margin-top: 20px;">
-                    <h3>Your Active Prescriptions & Directives</h3>
-                    <p style="color: #64748b; margin-top: 5px;">No active flags. Next scheduled check in: <strong>Oct 18, 2026</strong>.</p>
+
+                <!-- DIAGNOSTIC SCAN HEATMAP -->
+                <div class="card-panel" style="margin-top: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3>Diagnostic Scan Heatmap</h3>
+                    <div class="scan-container" style="position: relative; background: #000; height: 200px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; margin-top: 10px;">
+                        <p>[Chest X-ray/DICOM Scan Preview]</p>
+                        <div id="heatmap-overlay" style="position: absolute; width: 80px; height: 80px; border: 2px dashed #ff4d4d; background: rgba(255, 77, 77, 0.3); border-radius: 50%; display: none;"></div>
+                    </div>
+                    <button class="btn-secondary" style="margin-top: 10px; padding: 6px 12px; cursor: pointer;" onclick="toggleHeatmap()">Toggle AI Detection Heatmap</button>
                 </div>
             </div>
-            <div id="interface-admin" class="role-interface">
+
+            <!-- CHIEF ADMINISTRATOR CONSOLE -->
+            <div id="portal-admin" class="role-portal" style="display: none;">
                 <div class="app-header" style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px;">
                     <h1>Chief Administrator Console</h1>
-                    <p>System Maintenance & EMR Database Audit</p>
+                    <p>Global system oversight, server health, and role provisioning.</p>
+                </div>
+                <div class="card-panel" style="margin-top: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3>System Diagnostics</h3>
+                    <p>All data nodes and EMR sync pipes are functioning at 99.8% capacity.</p>
                 </div>
             </div>
-            <div id="emr-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center;">
-                <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
-                    <h2 id="modal-title" style="color: #008080; margin-bottom: 10px;">Patient EMR Record</h2>
-                    <div id="modal-content" style="margin-bottom: 20px; color: #334155; line-height: 1.6;">
-                        <!--Populated Dynamically-->
-                    </div>
-                    <button class="btn-primary" onclick="closeEMRModal()">CloseRecord</button>
-                </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const roleSelect = document.getElementById('role-select');
-                const dropZone = document.getElementById('drag-drop-zone');
-                const dropZoneText = document.getElementById('drop-zone-text');
-                const specialistUI = document.getElementById('interface-specialist');
-                const patientUI = document.getElementById('interface-patient');
-                const adminUI = document.getElementById('interface-admin');
-                const userDisplay = document.getElementById('current-user-display');
-                const specialistWelcome = document.getElementById('specialist-welcome');
+        </div>
 
-specialistUI.style.display = 'none';
-patientUI.style.display = 'none';
-adminUI.style.display = 'none';
-if (roleSelect) {
-    roleSelect.addEventListener('change', (e) => {
-        const val = e.target.value;
-    })
-}
-specialistUI.classList.remove('active-interface');
-patientUI.classList.remove('active-interface');
-adminUI.classList.remove('active-interface');
-            if (roleSelect === 'patient') {
-                patientUI.classList.add('active-interface');
-                userDisplay.innerHTML = 'Logged in as: <strong>Patient User (Jane Doe)</strong>';
-            }
-            else if (roleSelect === 'admin') {
-                adminUI.classList.add('active-interface');
-                userDisplay.innerHTML = 'Logged in as: <strong>Chief Administrator(Super User)</strong>';
-            } else {
-                specialistUI.classList.add('active-interface');
-                const formattedRole = roleSelect.charAt(0).toUpperCase() + roleSelect.slice(1);
-                userDisplay.innerHTML = 'Logged in as: <strong>Dr. Ende (${formattedRole})</strong>';
-                if (specialistWelcome) {
-                    specialistWelcome.innerText = 'Welcome, ${formattedRole} Ende';
-                }
-            }
-            function toggleHeatmap () {
-                const heatmap = document.getElementById('heatmap-overlay');
-                if (heatmap) {
-                    if (heatmap.style.display === 'none' || heatmap.style.display === '') {
-                        heatmap.style.display = 'block';
-                    } else {
-                        heatmap.style.display = 'none';
-                    }
-                }
-            }
+        <!-- EMR MODAL -->
+        <div id="emr-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+            <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+                <h2 id="modal-title" style="color: #008080; margin-bottom: 10px;">Patient EMR Record</h2>
+                <div id="modal-content" style="margin-bottom: 20px; color: #334155; line-height: 1.6;">
+                    <!-- Populated Dynamically -->
+                </div>
+                <button class="btn-primary" onclick="closeEMRModal()" style="padding: 8px 16px; background: #008080; color: white; border: none; border-radius: 4px; cursor: pointer;">Close Record</button>
+            </div>
+        </div>
+
+        <!-- JAVASCRIPT LOGIC -->
+        <script>
             function handleLogin(event) {
                 event.preventDefault();
-                const identifier = document.getElementById('userId').value.trim();
-                const selectedPortal = document.getElementById('portalSelect').value;
-                //Check if input is provided
-                if (!identifier) {
+                
+                const userInput = document.getElementById('login-user').value.trim();
+                const selectedRole = document.getElementById('login-role-select').value;
+
+                if (!userInput) {
                     alert("Please enter a valid email or user ID.");
                     return;
                 }
-                const userInput = document.getElementById('login-user').value;
-                const selectedRole = document.getElementById('login-role-select').value;
-                //Hide login screen, show main app container
+
+                // Hide login screen, show main app container
                 document.getElementById('auth-screen').style.display = 'none';
                 document.getElementById('main-app-container').style.display = 'block';
-                //Hide all Portals first
+
+                // Hide all Portals first
                 document.getElementById('portal-patient').style.display = 'none';
                 document.getElementById('portal-specialist').style.display = 'none';
                 document.getElementById('portal-admin').style.display = 'none';
+
                 const userDisplay = document.getElementById('authenticated-user-display');
-                //Route strictly based on login input role
+
+                // Route strictly based on selected role dropdown
                 if (selectedRole === 'patient') {
                     document.getElementById('portal-patient').style.display = 'block';
-                    userDisplay.innerHTML = 'Logged in as: <strong> {userInput} (Patient)</strong>';
-                    window.location.href = 'patient-dashboard.html';
-                }
-                else if (selectedRole === 'specialist') {
+                    userDisplay.innerHTML = `Logged in as: <strong>${userInput} (Patient)</strong>`;
+                } else if (selectedRole === 'specialist') {
                     document.getElementById('portal-specialist').style.display = 'block';
-                    userDisplay.innerHTML = 'Logged in as: <strong>Dr. {userInput} (Medical Specialist)</strong>';
-                    window.location.href = 'doctor-dashboard.html';
-                }
-                else if (selectedRole === 'admin') {
+                    userDisplay.innerHTML = `Logged in as: <strong>Dr. ${userInput} (Medical Specialist)</strong>`;
+                } else if (selectedRole === 'admin') {
                     document.getElementById('portal-admin').style.display = 'block';
-                    userDisplay.innerHTML = 'Logged in as: <strong>Chief Admin ({userInput})</strong>'
-                    window.location.href = 'admin-dashboard.html';
+                    userDisplay.innerHTML = `Logged in as: <strong>Chief Admin (${userInput})</strong>`;
                 } else {
-                    alert("Invalid role selected. Please choose a valid portal.");}
+                    alert("Invalid role selected. Please choose a valid portal.");
+                    handleLogout();
+                }
             }
+
             function handleLogout() {
-                //Clear form and reset view back to login gate 
                 document.getElementById('login-form').reset();
                 document.getElementById('main-app-container').style.display = 'none';
                 document.getElementById('auth-screen').style.display = 'flex';
             }
-            function openConsultationWorkspace(patientId, symptoms) {
-                alert(`Opening clinical consultation workspace for {patientId}.\nLogged Symptoms: "{symptoms}"\nReady for doctor's prescription & SOAP charting.`)
+
+            function toggleHeatmap() {
+                const heatmap = document.getElementById('heatmap-overlay');
+                if (heatmap) {
+                    heatmap.style.display = (heatmap.style.display === 'none' || heatmap.style.display === '') ? 'block' : 'none';
+                }
             }
-                if (btnNewReferral) {
-                    btnNewReferral.addEventListener('click', () => {
-                        dashboardView.style.display = 'none';
-                        formView.style.display = 'block';
-                        successView.style.display = 'none';
-                        window.scrollTo(0, 0);
-                    });
-                }
 
-                if (btnCancelForm) {
-                    btnCancelForm.addEventListener('click', () => {
-                        formView.style.display = 'none';
-                        dashboardView.style.display = 'block';
-                    });
-                }
-
-                if (btnSubmitForm) {
-                    btnSubmitForm.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        formView.style.display = 'none';
-                        successView.style.display = 'block';
-                        window.scrollTo(0, 0);
-                    });
-                }
-
-                if (btnSuccessHome) {
-                    btnSuccessHome.addEventListener('click', () => {
-                        successView.style.display = 'none';
-                        dashboardView.style.display = 'block';
-                    });
-                }
-
-                function handleFileUpload(file) {
-                    if (dropZoneText && file) {
-                        dropZoneText.innerHTML = '<strong>Selected:</strong> ' + file.name + ' (' + file.size + ' bytes)';
-                        dropZoneText.style.borderColor = '#22c55e';
-                        dropZoneText.style.backgroundColor = '#f0fdf4';
-                    }
-                }
-
-                if (dropZone) {
-                    let fileInput = document.getElementById('hidden-file-input');
-                    if (!fileInput) {
-                        fileInput = document.createElement('input');
-                        fileInput.type = 'file';
-                        fileInput.id = 'hidden-file-input';
-                        fileInput.style.display = 'none';
-                        document.body.appendChild(fileInput);
-                    }
-
-                    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                        dropZone.addEventListener(eventName, (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                        }, false);
-                    });
-
-                    ['dragenter', 'dragover'].forEach(eventName => {
-                        dropZone.addEventListener(eventName, () => {
-                            dropZone.style.backgroundColor = '#e0f2f1';
-                            dropZone.style.borderColor = '#008080';
-                        });
-                    });
-
-                    ['dragleave', 'drop'].forEach(eventName => {
-                        dropZone.addEventListener(eventName, () => {
-                            dropZone.style.backgroundColor = '#f8fafc';
-                            dropZone.style.borderColor = '#cbd5e1';
-                        }, false);
-                    });
-
-                    dropZone.addEventListener('drop', (e) => {
-                        const files = e.dataTransfer ? e.dataTransfer.files : [];
-                        if (files.length > 0) {
-                            handleFileUpload(files[0]);
-                        }
-                    }, false);
-
-                    dropZone.addEventListener('click', () => {
-                        fileInput.click();
-                    });
-
-                    fileInput.addEventListener('change', (e) => {
-                        if (e.target.files && e.target.files.length > 0) {
-                            handleFileUpload(e.target.files[0]);
-                        }
-                    });
-                }
-            });
             function viewPatientEMR(patientId, patientName, condition) {
-            const modal = document.getElementById('emr-modal');
-            const title = document.getElementById('modal-title');
-            const content = document.getElementById('modal-content');
-            if (modal && title && content) {
-                title.innerText = 'EMR Record: ${patientName} (${patientId})';
-                content.innerHTML = `
-                    <p><strong>Patient Name:</strong> ${patientName}</p>
-                    <p><strong>Patient ID:</strong> ${patientId}</p>
-                    <p><strong>Primary Diagnosis:</strong> ${condition}</p>
-                    <p><strong>Blood Group/Genotype:</strong> 0+ / AA</p>
-                    <strong>Last Hospital Visit:</strong> October 10, 2026
-                    <strong>Diagnostic Flag:</strong>Moderate anomaly detected in upper left quadrant. Review scan attached below.</p>
-                    <div style="background: #f8fafc; padding: 10px; border-radius: 6px; margin-top: 10px; border: 1px solid #e2e8f0;">
-                        <span class="material-icons" style="vertical-align: middle; color: #008080;">description</span>
-                        <a href="#" style="color:#008080; font-weight: 600; text-decoration: none;">Download_DICOM_Scan_${patientId}.dcm</a>
-                    </div>`;
-                     modal.style.display = 'flex';
+                const modal = document.getElementById('emr-modal');
+                const title = document.getElementById('modal-title');
+                const content = document.getElementById('modal-content');
+                if (modal && title && content) {
+                    title.innerText = `EMR Record: ${patientName} (${patientId})`;
+                    content.innerHTML = `
+                        <p><strong>Patient Name:</strong> ${patientName}</p>
+                        <p><strong>Patient ID:</strong> ${patientId}</p>
+                        <p><strong>Primary Diagnosis:</strong> ${condition}</p>
+                        <p><strong>Blood Group/Genotype:</strong> O+ / AA</p>
+                        <p><strong>Last Hospital Visit:</strong> October 10, 2026</p>
+                        <p><strong>Diagnostic Flag:</strong> Moderate anomaly detected in upper left quadrant. Review scan attached below.</p>
+                        <div style="background: #f8fafc; padding: 10px; border-radius: 6px; margin-top: 10px; border: 1px solid #e2e8f0;">
+                            <span style="color: #008080; font-weight: 600;">📁 Download_DICOM_Scan_${patientId}.dcm</span>
+                        </div>`;
+                    modal.style.display = 'flex';
                 }
             }
-             function closeEMRModal() {
+
+            function closeEMRModal() {
                 const modal = document.getElementById('emr-modal');
                 if (modal) {
                     modal.style.display = 'none';
