@@ -291,6 +291,13 @@ adminUI.classList.remove('active-interface');
             }
             function handleLogin(event) {
                 event.preventDefault();
+                const identifier = document.getElementById('userId').value.trim();
+                const selectedPortal = document.getElementById('portalSelect').value;
+                //Check if input is provided
+                if (!identifier) {
+                    alert("Please enter a valid email or user ID.");
+                    return;
+                }
                 const userInput = document.getElementById('login-user').value;
                 const selectedRole = document.getElementById('login-role-select').value;
                 //Hide login screen, show main app container
@@ -305,15 +312,19 @@ adminUI.classList.remove('active-interface');
                 if (selectedRole === 'patient') {
                     document.getElementById('portal-patient').style.display = 'block';
                     userDisplay.innerHTML = 'Logged in as: <strong> {userInput} (Patient)</strong>';
+                    window.location.href = 'patient-dashboard.html';
                 }
                 else if (selectedRole === 'specialist') {
                     document.getElementById('portal-specialist').style.display = 'block';
                     userDisplay.innerHTML = 'Logged in as: <strong>Dr. {userInput} (Medical Specialist)</strong>';
+                    window.location.href = 'doctor-dashboard.html';
                 }
-                else if (selectedRole === admin) {
+                else if (selectedRole === 'admin') {
                     document.getElementById('portal-admin').style.display = 'block';
                     userDisplay.innerHTML = 'Logged in as: <strong>Chief Admin ({userInput})</strong>'
-                }
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    alert("Invalid role selected. Please choose a valid portal.");}
             }
             function handleLogout() {
                 //Clear form and reset view back to login gate 
